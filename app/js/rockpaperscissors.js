@@ -62,9 +62,9 @@ function playRPC(){
   console.log(computerTracker.length);
 
   function checkWinner(){
-    if(playerTracker.length === 2){
+    if(playerTracker.length === 5){
       console.log('you beat the stupid computer');
-    } else if(computerTracker.length === 2) {
+    } else if(computerTracker.length === 5) {
       console.log('the computer stomped you');
     } else {
      console.log('keep playing');
