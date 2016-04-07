@@ -1,55 +1,77 @@
-////////////////////////////////////////////////
-/*   Provided Code - Please Don't Edit   */
-////////////////////////////////////////////////
-'use strict';
+var playerTracker = [];
+var computerTracker = [];
 
-function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    return prompt();
-}
-function randomPlay() {
-    var randomNumber = Math.random();
-    if (randomNumber < 0.33) {
-        return "rock";
-    } else if (randomNumber < 0.66) {
-        return "paper";
+function playRPC(){
+
+  var playerChoice;
+  var computerChoice;
+
+
+  var playerChoice = prompt("please choose rock paper or scissors");
+
+  var cpuChoice = function(){
+      var computerChoice = Math.random();
+      if (computerChoice < 0.33) {
+          return "rock";
+      } else if (computerChoice < 0.66) {
+          return "paper";
+      } else {
+          return "scissors";
+      }
+  }
+  var computerChoice = cpuChoice();
+  console.log(computerChoice);
+  console.log(playerChoice);
+
+  function compareResults() {
+
+    if(playerChoice === computerChoice) {
+      return 'tie';
+    } else if(playerChoice === 'rock') {
+      if(computerChoice === 'scissors') {
+        return 'player wins';
+      }
+      return 'player loses';
+    } else if (playerChoice === 'paper') {
+      if(computerChoice === 'rock') {
+        return 'player wins';
+      }
+      return 'player loses';
     } else {
-        return "scissors";
+      if (computerChoice === 'paper') {
+        return 'player wins';
+      }
+      return 'player loses';
     }
-}
-////////////////////////////////////////////////
-/*           Write Your Code Below            */
-////////////////////////////////////////////////
 
-function getPlayerMove(move) {
-    // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-    return /* Your Expression */;
-}
+  }
 
-function getComputerMove(move) {
-    // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-    return /* Your Expression */;
-}
+  var winner = compareResults();
+  console.log(winner);
+  function pushWin(){
+    if(winner == "player wins"){
+      playerTracker.push('1');
+    } else if(winner == "player loses"){
+      computerTracker.push('1');
+    } else if(winner == "tie") {
+      console.log('damn ties');
+    }
+  }
+  pushWin();
+  console.log(playerTracker.length);
+  console.log(computerTracker.length);
 
-function getWinner(playerMove,computerMove) {
-    var winner;
-    // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
-    // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
-    // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
-    /* YOUR CODE HERE */
-    return winner;
-}
-
-function playToFive() {
-    console.log("Let's play Rock, Paper, Scissors");
-    var playerWins = 0;
-    var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
-    return [playerWins, computerWins];
-}
+  function checkWinner(){
+    if(playerTracker.length === 2){
+      console.log('you beat the stupid computer');
+    } else if(computerTracker.length === 2) {
+      console.log('the computer stomped you');
+    } else {
+     console.log('keep playing');
+     playRPC();
+    }
+  }
+  checkWinner();
+};
+playRPC();
 
